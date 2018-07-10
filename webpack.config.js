@@ -9,6 +9,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist'
+<<<<<<< HEAD
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -16,4 +17,7 @@ module.exports = {
       template: './src/index.html'
     })
   ]
+=======
+  }
+>>>>>>> 64e63df47144e17f4a4d34434def6154f6c6666d
 };
