@@ -13,7 +13,6 @@ export const clearResults = () => {
 };
 
 // Calculate length of the title and return title with limit length
-
 const limitRecipeTitle = (title, limit = 17) => {
   const newTitle = [];
   if (title.length > limit) {
