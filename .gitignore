@@ -4,6 +4,7 @@ bounced/
 .DS_Store
 sitemap.xml
 sitemap.xml.gz
+package-lock.json
 wp-config.php
 wp-content/logs/
 wp-content/advanced-cache.php
