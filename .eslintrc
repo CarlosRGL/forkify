@@ -6,16 +6,8 @@
     "es6": true
   },
   "rules": {
+    "no-console": "off",
     "indent": ["error", 2],
-    "valid-jsdoc": [
-      "error",
-      {
-        "requireReturn": true,
-        "requireReturnType": true,
-        "requireParamDescription": true,
-        "requireReturnDescription": true
-      }
-    ],
     "no-unused-vars": 2,
     "no-undef": 2
   },
