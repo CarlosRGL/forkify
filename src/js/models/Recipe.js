@@ -54,53 +54,56 @@ export default class Recipe {
       'cup',
       'pound'
     ];
+
     const newIngredients = this.ingredients.map(el => {
-      // Uniform units
+      // 1) Uniform units
       let ingredient = el.toLowerCase();
       unitsLong.forEach((unit, i) => {
         ingredient = ingredient.replace(unit, unitsShort[i]);
       });
-      // remove parentheses
+
+      // 2) Remove parentheses
       ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');
 
-      // parse ingredients into count, unit and ingredients
+      // 3) Parse ingredients into count, unit and ingredient
       const arrIng = ingredient.split(' ');
-      const unitIndex = arrIng.findIndex(el2 => {
-        unitsShort.includes(el2);
-      });
+      const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2));
 
       let objIng;
       if (unitIndex > -1) {
-        // there is a unit
-        // example 4 1/2 cups arrCount is [4, 1/2] --> eval("4+1/2") => 4.5
-        // example 4 cvups, arrCount is [4]
+        // There is a unit
+        // Ex. 4 1/2 cups, arrCount is [4, 1/2] --> eval("4+1/2") --> 4.5
+        // Ex. 4 cups, arrCount is [4]
         const arrCount = arrIng.slice(0, unitIndex);
+
         let count;
         if (arrCount.length === 1) {
           count = eval(arrIng[0].replace('-', '+'));
         } else {
           count = eval(arrIng.slice(0, unitIndex).join('+'));
         }
+
         objIng = {
           count,
           unit: arrIng[unitIndex],
           ingredient: arrIng.slice(unitIndex + 1).join(' ')
         };
       } else if (parseInt(arrIng[0], 10)) {
-        // there is no unit, but 1st element is a number
+        // There is NO unit, but 1st element is number
         objIng = {
           count: parseInt(arrIng[0], 10),
           unit: '',
-          ingredient: arrIng.slice(1)
+          ingredient: arrIng.slice(1).join(' ')
         };
       } else if (unitIndex === -1) {
-        // there is no unit and no number un 1st position
+        // There is NO unit and NO number in 1st position
         objIng = {
           count: 1,
           unit: '',
           ingredient
         };
       }
+
       return objIng;
     });
     this.ingredients = newIngredients;
