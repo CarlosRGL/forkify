@@ -24,3 +24,4 @@ config.codekit
 /readme.html
 /license.txt
 sitesync
+/dist/js/*
